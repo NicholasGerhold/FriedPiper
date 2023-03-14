@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="FriedPiper.PointOfSale.OptionComponents.AppleFritterOptions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FriedPiper.PointOfSale.OptionComponents"
+             xmlns:enums="clr-namespace:FriedPiper.Data.Enums;assembly=FriedPiper.Data"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="648">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="ServingSize" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enums:ServingSize"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <RadioButton Content="{TemplateBinding ContentPresenter.Content}" IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock  Grid.ColumnSpan="3" TextAlignment="Center"  Background="White" FontSize="35" VerticalAlignment="Center">
+            Customize Apple Fritters
+        </TextBlock>
+        <ToggleButton Grid.Row="3" FontSize="25" Margin="10, 30" IsChecked="{Binding Path=Glazed}">
+            Glazed?
+        </ToggleButton>
+        <TextBlock FontSize="25" Grid.Row="1" VerticalAlignment="Bottom">
+            Choose Size:
+        </TextBlock>
+        <StackPanel Grid.Row="2" Grid.RowSpan="2" >
+            <ListBox ItemsSource="{Binding Source={StaticResource ServingSize}}" SelectedItem="{Binding Path=Size}" FontSize="25" BorderThickness="0"/>
+
+        </StackPanel>
+
+    </Grid>
+</UserControl>

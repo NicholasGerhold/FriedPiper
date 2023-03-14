@@ -1,0 +1,48 @@
+﻿<Window x:Class="FriedPiper.PointOfSale.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FriedPiper.PointOfSale"
+        mc:Ignorable="d"
+        Title="Fried Piper Point Of Sale" Height="720" Width="1080">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="BorderThickness" Value="2"/>
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="FontSize" Value="25"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Name="containerBorder" Grid.ColumnSpan="3" Grid.RowSpan="5">
+            <local:MenuItemSelectionControl/>
+        </Border>
+        <Button Grid.Row="6" Click="onCancelOrderClick" Name="CancelButton">
+            Cancel Order
+        </Button>
+        <Button Grid.Column="1" Grid.Row="6" Name="selectMoreItemsButton" Click="onSelectMoreItemsButtonClick" >
+            Select More Items
+        </Button>
+        <Button Grid.Column="2" Grid.Row="6" Click="onCompleteOrderClick" Name="CompleteButton">
+            Complete Order
+        </Button>
+        <local:OrderSummaryControl Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="6" x:Name="OrderSummary">
+        </local:OrderSummaryControl>
+    </Grid>
+</Window>

@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>FriedPiper.PointOfSale</AssemblyName>
+    <RootNamespace>FriedPiper.PointOfSale</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Documentation\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\Website\Website.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RoundRegister">
+      <HintPath>RoundRegister.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

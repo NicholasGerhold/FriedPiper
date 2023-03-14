@@ -1,0 +1,84 @@
+﻿<UserControl x:Class="FriedPiper.PointOfSale.OptionComponents.PiperPlatterOptions"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FriedPiper.PointOfSale.OptionComponents"
+             xmlns:enums="clr-namespace:FriedPiper.Data.Enums;assembly=FriedPiper.Data"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="648">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="PieFilling" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enums:PieFilling"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="IceCreamFlavor" MethodName="GetValues" ObjectType="{x:Type system:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="enums:IceCreamFlavor"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <RadioButton Content="{TemplateBinding ContentPresenter.Content}" IsChecked="{Binding Path=IsSelected, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock  Grid.ColumnSpan="4" TextAlignment="Center"  Background="White" FontSize="35" VerticalAlignment="Center">
+            Customize Piper Platter
+        </TextBlock>
+        <TextBlock FontSize="25" Grid.Row="1" >
+            Choose Pie <LineBreak/>
+            One's Flavor:
+        </TextBlock>
+        <StackPanel Grid.Row="2" Grid.RowSpan="2" >
+            <ListBox ItemsSource="{Binding Source={StaticResource PieFilling}}" SelectedItem="{Binding Path=LeftPie.Flavor}" FontSize="25" BorderThickness="0"/>
+
+        </StackPanel>
+        <TextBlock FontSize="25" Grid.Row="1" Grid.Column="1" >
+            Choose Pie <LineBreak/>
+            Two's Flavor:
+        </TextBlock>
+        <StackPanel Grid.Row="2" Grid.RowSpan="2"  Grid.Column="1" >
+            <ListBox ItemsSource="{Binding Source={StaticResource PieFilling}}" SelectedItem="{Binding Path=RightPie.Flavor}" FontSize="25" BorderThickness="0"/>
+
+        </StackPanel>
+        <TextBlock FontSize="25" Grid.Row="1" Grid.Column="2" >
+            Choose Ice <LineBreak/>
+            Cream One's <LineBreak/>
+            Flavor:
+        </TextBlock>
+        <StackPanel Grid.Row="2" Grid.RowSpan="2"  Grid.Column="2">
+            <ListBox ItemsSource="{Binding Source={StaticResource IceCreamFlavor}}" SelectedItem="{Binding Path=LeftIceCream.Flavor}" FontSize="25" BorderThickness="0"/>
+
+        </StackPanel>
+        <TextBlock FontSize="25" Grid.Row="1" Grid.Column="3" >
+            Choose Ice <LineBreak/>
+            Cream Two's <LineBreak/>
+            Flavor:
+        </TextBlock>
+        <StackPanel Grid.Row="2" Grid.RowSpan="2"  Grid.Column="3">
+            <ListBox ItemsSource="{Binding Source={StaticResource IceCreamFlavor}}" SelectedItem="{Binding Path=RightIceCream.Flavor}" FontSize="25" BorderThickness="0"/>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

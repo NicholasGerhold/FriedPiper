@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="FriedPiper.PointOfSale.CashControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FriedPiper.PointOfSale"
+             xmlns:localX ="clr-namespace:FriedPiper.PointOfSale.CompleteOrderComponents"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="648">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="2" Text="Customer" FontSize="15" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="4" Text="Change" FontSize="15" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="7" Text="Customer" FontSize="15" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Column="9" Text="Change" FontSize="15" VerticalAlignment="Bottom"/>
+        </Grid>
+        <TextBlock Grid.Row="9" Grid.Column="1" Text="{Binding Path=TotalChangeDue, StringFormat= Total Change Due: {0}}" FontSize="25"/>
+        <localX:IndividualCashControl Label="$100" Grid.Row="1" ChangeTotal="{Binding Path=HundredChange}" Value="{Binding Path=HundredCustomer, Mode=OneWayToSource}" />
+        <localX:IndividualCashControl Label="$50" Value="{Binding Path=FiftyCustomer, Mode=OneWayToSource}" Grid.Row="2" ChangeTotal="{Binding Path=FiftyChange}"/>
+        <localX:IndividualCashControl Label="$20" Value="{Binding Path=TwentyCustomer, Mode=OneWayToSource}" Grid.Row="3" ChangeTotal="{Binding Path=TwentyChange}"/>
+        <localX:IndividualCashControl Label="$10" Value="{Binding Path=TenCustomer, Mode=OneWayToSource}" Grid.Row="4" ChangeTotal="{Binding Path=TenChange}"/>
+        <localX:IndividualCashControl Label="$5" Value="{Binding Path=FiveCustomer, Mode=OneWayToSource}" Grid.Row="5" ChangeTotal="{Binding Path=FiveChange}"/>
+        <localX:IndividualCashControl Label="$2" Value="{Binding Path=TwoCustomer, Mode=OneWayToSource}" Grid.Row="6" ChangeTotal="{Binding Path=TwoChange}"/>
+        <localX:IndividualCashControl Label="$1" ChangeTotal="{Binding Path=OneChange}" Value="{Binding Path=OneCustomer, Mode=OneWayToSource}" Grid.Row="7" />
+
+        <localX:IndividualCashControl Label="¢100" Grid.Column="1" Grid.Row="1" ChangeTotal="{Binding Path=DollarCoinChange}" Value="{Binding Path=DollarCoinCustomer, Mode=OneWayToSource}" />
+        <localX:IndividualCashControl Label="¢50" Grid.Column="1" Value="{Binding Path=HalfDollarCoinCustomer, Mode=OneWayToSource}" Grid.Row="2" ChangeTotal="{Binding Path=HalfDollarCoinChange}"/>
+        <localX:IndividualCashControl Label="¢25" Grid.Column="1" Value="{Binding Path=QuarterCustomer, Mode=OneWayToSource}" Grid.Row="3" ChangeTotal="{Binding Path=QuarterChange, Mode=OneWay}"/>
+        <localX:IndividualCashControl Label="¢10" Grid.Column="1" Value="{Binding Path=DimeCustomer, Mode=OneWayToSource}" Grid.Row="4" ChangeTotal="{Binding Path=DimeChange}"/>
+        <localX:IndividualCashControl Label="¢5" Grid.Column="1" Value="{Binding Path=NickleCustomer, Mode=OneWayToSource}" Grid.Row="5" ChangeTotal="{Binding Path=NickleChange}"/>
+        <localX:IndividualCashControl Label="¢1" Grid.Column="1" Value="{Binding Path=PennieCustomer, Mode=OneWayToSource}" Grid.Row="6" ChangeTotal="{Binding Path=PennieChange}"/>
+        
+        <localX:OrderTotalControl Grid.Row="9"/>
+        <Button FontSize="25" Click="onFinalizeClick" Grid.Row="10" >Finalize Sale</Button>
+
+    </Grid>
+</UserControl>

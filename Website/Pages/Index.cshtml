@@ -1,0 +1,114 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "FriedPiper";
+}
+
+<form>
+    <div id="search">
+        <input type="text" name="SearchTerms" value="@Model.SearchTerms"/>
+        <input type="submit" value="Search"/>
+    </div>
+    <div id="filters">
+        @foreach (String type in Model.PossibleCategories)
+        {
+            <label>
+                <input type="checkbox" name="Catergory" value="@type" checked="@Model.Catergory.Contains(type)"/>
+                @type
+            </label>
+        }
+        <h4>Price</h4>
+        <div>
+            Between
+            <input name="PriceMin" type="number" min="0" max="20" step="1" placeholder="min" value="@Model.PriceMin"/>
+            and
+            <input name="PriceMax" type="number" min="0" max="20" step="1" placeholder="max" value="@Model.PriceMax"/>
+        </div>
+        <h4>Calories</h4>
+        <div>
+            Between
+            <input name="CaloriesMin" type="number" min="0" max="3000" step="1" placeholder="min" value="@Model.CaloriesMin"/>
+            and
+            <input name="CaloriesMax" type="number" min="0" max="3000" step="1" placeholder="max" value="@Model.CaloriesMax"/>
+        </div>
+     </div>
+</form>
+<div class="text-center">
+    <h1 class="display-4">Fried Piper</h1>
+    <p>The finest of fried delights!</p> 
+
+    <h1 id="treats">Treats</h1>
+    <div>
+        <ul class="MenuItemList">
+            @foreach(FriedPiper.Data.MenuItems.IMenuItem items in Model.Items)
+            {
+                @if(items is FriedPiper.Data.MenuItems.ITreat item)
+                {
+                    <li>
+                        <div>
+                            <h3>@item.Name</h3> 
+                            <div>Price: @item.Price</div> 
+                            <div>Calories: @item.Calories</div>
+                        </div>
+                    </li>
+                }
+
+            }
+        </ul>
+
+    </div>
+    <h1 id="poppers">Poppers</h1>
+    <div>
+        <ul class="MenuItemList">
+            @foreach(FriedPiper.Data.MenuItems.IMenuItem items in Model.Items)
+            {
+                if(items is FriedPiper.Data.MenuItems.IPopper item)
+                {
+                    <li>
+                        <div>
+                            <h3>@item.Name</h3> 
+                            @if (item is FriedPiper.Data.MenuItems.Popper temp2)
+                            {
+                                <div>Glazed: @temp2.Glazed</div>
+                            }
+                            <div>Price: @item.Price</div> 
+                            <div>Calories: @item.Calories</div>
+                        </div>
+                    </li>
+                }
+                
+            }
+        </ul>
+    </div>
+    <h1 id="platters">Platters</h1>
+    <div>
+        <ul class="MenuItemList">
+            @foreach(FriedPiper.Data.MenuItems.IMenuItem items in Model.Items)
+            {
+                if(items is FriedPiper.Data.MenuItems.IPlatter item)
+                {
+                    <li>
+                        <div>
+                            <h3 class="name">@item.Name</h3> 
+                            @if (item is FriedPiper.Data.MenuItems.Popper temp1)
+                            {
+                                <div class="glazed">Glazed: @temp1.Glazed</div>
+                            }
+                            @if (item is FriedPiper.Data.MenuItems.PiperPlatter temp)
+                            {
+                                <div>@temp.LeftPie.Name</div>
+                                <div>@temp.RightPie.Name</div>
+                                <div>@temp.LeftIceCream.Name</div>
+                                <div>@temp.RightIceCream.Name</div>
+                            }
+                            <div class="price">Price: @item.Price</div> 
+                            <div class="calories">Calories: @item.Calories</div>
+                        </div>
+                    </li>
+                }
+                
+            }
+        </ul>
+    </div>
+    <!--><p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p></!-->
+</div>
